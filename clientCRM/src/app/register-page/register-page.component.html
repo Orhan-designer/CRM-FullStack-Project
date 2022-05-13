@@ -1,0 +1,34 @@
+<form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="card-content">
+        <span class="card-title">Создать аккаунт</span>
+        <div class="input-field">
+            <mat-label>Email:</mat-label>
+            <input id="email" type="email" formControlName="email"
+                [ngClass]="{'invalid': form.controls['email'].invalid && form.controls['email'].touched}">
+            <span class="helper-text red-text" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+                <mat-error *ngIf="form.controls['email'].hasError('required')">
+                    Email не должен быть пустым
+                </mat-error>
+                <mat-error *ngIf="form.controls['email'].hasError('email')">
+                    Введите корректный email адрес
+                </mat-error>
+            </span>
+        </div>
+
+        <div class="input-field">
+            <mat-label>Пароль:</mat-label>
+            <input id="password" type="password" formControlName="password"
+                [ngClass]="{'invalid': form.controls['password'].invalid && form.controls['password'].touched}">
+            <span class="helper-text red-text"
+                *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+                <mat-error *ngIf="form.controls['password'].hasError('required')">
+                    Пароль не должен быть пустым
+                </mat-error>
+            </span>
+        </div>
+    </div>
+    <div class="card-action">
+        <button class="modal-action btn waves-effect" type="submit"
+            [disabled]="!form.valid || form.disabled">Создать</button>
+    </div>
+</form>
